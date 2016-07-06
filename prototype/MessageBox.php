@@ -1,5 +1,7 @@
 <?php
 use Framework2\Product;
+
+require_once 'framework/Product.php';
 /**
  * Created by PhpStorm.
  * User: kazumatamaki
@@ -10,22 +12,25 @@ class MessageBox implements Product
 {
     private $decochar;
 
-    public function __construct()
+    public function __construct($decochar)
     {
+        $this->decochar = $decochar;
     }
 
     public function myUse($s)
     {
         $length = mb_strlen($s, 'UTF-8');
+        echo '<p>';
         for ($i = 0; $i < $length + 4; $i++) {
             echo $this->decochar;
         }
-        echo '<br>';
+        echo '</p><p>';
         echo $this->decochar . ' ' . $s . ' ' . $this->decochar;
+        echo '</p><p>';
         for ($i = 0; $i < $length + 4; $i++) {
             echo $this->decochar;
         }
-        echo '<br>';
+        echo '</p>';
     }
 
     public function createClone()

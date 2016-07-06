@@ -1,9 +1,10 @@
 <?php
-use Framework\Manager;
-use Framework\Product;
+use Framework2\Manager;
 
 require_once 'MessageBox.php';
 require_once 'UnderlinePen.php';
+require_once 'framework/Manager.php';
+require_once 'framework/Product.php';
 /**
  * Created by PhpStorm.
  * User: kazumatamaki
