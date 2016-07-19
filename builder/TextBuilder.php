@@ -9,30 +9,36 @@ require_once 'Builder.php';
  */
 class TextBuilder extends Builder
 {
-    public $buffer;
+    private $buffer = [];
 
-    public function makeTitle()
+    public function makeTitle($title)
     {
-        // TODO: Implement makeTitle() method.
+        $this->buffer[] = '============================<br>';
+        $this->buffer[] = '「' . $title . '」<br>';
+        $this->buffer[] = '<br>';
     }
 
-    public function makeString()
+    public function makeString($str)
     {
-        // TODO: Implement makeString() method.
+        $this->buffer[] = '■' . $str . '<br>';
+        $this->buffer[] = '<br>';
     }
 
-    public function makeItems()
+    public function makeItems($items)
     {
-        // TODO: Implement makeItems() method.
+        foreach($items as $item) {
+            $this->buffer[] = ' ・' . $item . '<br>';
+        }
+        $this->buffer[] = '<br>';
     }
 
     public function close()
     {
-        // TODO: Implement close() method.
+        $this->buffer[] = '============================<br>';
     }
 
     public function getResult()
     {
-
+        return implode('', $this->buffer);
     }
 }

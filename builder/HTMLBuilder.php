@@ -8,32 +8,51 @@ require_once 'Builder.php';
  */
 class HTMLBuilder extends Builder
 {
-    public $filename;
+    private $filename;
 
-    public $writer;
+    private $writer = '';
 
-    public function makeTitle()
+    public function makeTitle($title)
     {
-        // TODO: Implement makeTitle() method.
+        $this->filename = $title . '.html';
+        try {
+            file_get_contents($this->filename);
+        } catch (Exception $e) {
+            echo $e->getMessage();
+            exit();
+        }
+
+        $this->writer .= '<html><head><title>' . $title . '</title></head><body>';
+        $this->writer .= '<h1>' . $title . '</h1>';
     }
 
-    public function makeString()
+    public function makeString($str)
     {
-        // TODO: Implement makeString() method.
+        $this->writer .= '<p>' . $str . '</p>';
     }
 
-    public function makeItems()
+    public function makeItems($items)
     {
-        // TODO: Implement makeItems() method.
+        $this->writer .= '<ul>';
+        foreach($items as $item) {
+            $this->writer .= '<li>' . $item . '</li>';
+        }
+        $this->writer .= '</ul>';
     }
 
     public function close()
     {
-        // TODO: Implement close() method.
+        $this->writer .= '</body></html>';
+        try {
+            file_put_contents($this->filename, $this->writer);
+        } catch (Exception $e) {
+            echo $e->getMessage();
+            exit();
+        }
     }
 
     public function getResult()
     {
-
+        return $this->filename;
     }
 }
